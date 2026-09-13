@@ -1,0 +1,152 @@
+[
+  {
+    "id": "rel-bandcamp_daily-1887586554276790893",
+    "artist": "Bandcamp Daily",
+    "title": "Believer",
+    "type": "album",
+    "genres": [
+      "post-punk",
+      "shoegaze",
+      "indie folk"
+    ],
+    "summary_da": "Angela Autumn's 'Believer' er en udgivelse som bruger psyk-rock og indie folk som udgangspunkt for en unik og støjende lyd. Albummet er en melankolsk og energisk udgivelse der bryder ud af traditionerne for old-time musik.",
+    "source_name": "Bandcamp Daily",
+    "source_url": "https://daily.bandcamp.com/album-of-the-day/angela-autumn-believer-review",
+    "badge_color": "bg-sky-900/60 text-sky-300 border-sky-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:51:27.661216+00:00"
+  },
+  {
+    "id": "rel-bandcamp_daily-3505126207623549702",
+    "artist": "Bandcamp Daily",
+    "title": "It's Not Easy Being Greenland",
+    "type": "album",
+    "genres": [
+      "post-punk",
+      "shoegaze",
+      "indie rock"
+    ],
+    "summary_da": "It's Not Easy Being Greenland er en skarpt og melankolsk udgivelse fra et ukendt band fra Grønland, der kombinerer post-punk og shoegaze-stil med en tydelig nordisk atmosfærisk præget lyd.",
+    "source_name": "Bandcamp Daily",
+    "source_url": "https://daily.bandcamp.com/scene-report/greenland-music-scene-report",
+    "badge_color": "bg-sky-900/60 text-sky-300 border-sky-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:51:20.153327+00:00"
+  },
+  {
+    "id": "rel-brooklynvegan-7747811173075084096",
+    "artist": "BrooklynVegan",
+    "title": "Dios Bendiga",
+    "type": "album",
+    "genres": [
+      "hip hop",
+      "rap metal",
+      "alternative hip hop"
+    ],
+    "summary_da": "Cypress Hill er på tur med deres nye album 'Dios Bendiga' og har også planer for en række koncerter i NYC og Colorado, inkl. en 'Haunted' show i New York City.",
+    "source_name": "BrooklynVegan",
+    "source_url": "https://www.brooklynvegan.com/cypress-hill-announce-haunted-shows-in-nyc-colorado-more-tour-dates-bv-presale-for-ny/",
+    "badge_color": "bg-amber-900/60 text-amber-300 border-amber-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:51:05.166161+00:00"
+  },
+  {
+    "id": "rel-quietus-7394470306167695071",
+    "artist": "The Quietus",
+    "title": "Music With You",
+    "type": "none",
+    "genres": [
+      "pop",
+      "electronic",
+      "dance"
+    ],
+    "summary_da": "Kylie Minogue's deep cuts fra 90-tallet og 2000-tallet præsenteres i en ny udgivelse med 12 mindre kendte sange, der viser kunstnerens evige evne til at skabe melodiøs og energisk musik.",
+    "source_name": "The Quietus",
+    "source_url": "https://thequietus.com/culture/books/cant-get-you-out-of-my-head-in-search-of-kylie-michael-cragg/",
+    "badge_color": "bg-emerald-900/60 text-emerald-300 border-emerald-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:50:57.999759+00:00"
+  },
+  {
+    "id": "rel-quietus-4364518770477746565",
+    "artist": "The Quietus",
+    "title": "A Right to Housing",
+    "type": "none",
+    "genres": [
+      "post-punk",
+      "shoegaze",
+      "indie rock",
+      "politisisk musik"
+    ],
+    "summary_da": "Samuel Stein's nye bog 'A Right to Housing' mener, at kampen for tilgængelig bolig er en uafgjort del af klassestrængelsen. Denne udgivelse er en essensial del af den amerikanske musiksammenhæng, der kombinerer post-punk og shoegaze-lyd med politisk engagemang.",
+    "source_name": "The Quietus",
+    "source_url": "https://thequietus.com/culture/books/this-must-be-the-place-do-we-have-a-right-to-housing/",
+    "badge_color": "bg-emerald-900/60 text-emerald-300 border-emerald-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:50:50.947119+00:00"
+  },
+  {
+    "id": "rel-pitchfork_best-6345965818748471781",
+    "artist": "Pitchfork (Best New)",
+    "title": "Punching the Clown",
+    "type": "ep",
+    "genres": [
+      "post-punk",
+      "shoegaze"
+    ],
+    "summary_da": "Kurt Wagner har givet ud en ny EP med en mere akustisk og minimalistisk sound, hvor storytellingen fortsætter som en af de stærke punkter.",
+    "source_name": "Pitchfork (Best New)",
+    "source_url": "https://pitchfork.com/reviews/albums/lambchop-punching-the-clown/",
+    "badge_color": "bg-red-900/60 text-red-300 border-red-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:50:30.481979+00:00"
+  },
+  {
+    "id": "rel-pitchfork_best-8181171802697856824",
+    "artist": "Pitchfork (Best New)",
+    "title": "Ultimate Love Forever",
+    "type": "album",
+    "genres": [
+      "post-punk",
+      "shoegaze"
+    ],
+    "summary_da": "Brooklyn-baserede songwriter udgiver debutalbum med trans-rage-inspireret DIY-punk med støjende og melankolsk lyd.",
+    "source_name": "Pitchfork (Best New)",
+    "source_url": "https://pitchfork.com/reviews/albums/lex-walton-ultimate-love-forever/",
+    "badge_color": "bg-red-900/60 text-red-300 border-red-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:50:24.973597+00:00"
+  },
+  {
+    "id": "rel-stereogum-3187283741038298320",
+    "artist": "Stereogum",
+    "title": "The Holy Cross Tigers",
+    "type": "album",
+    "genres": [
+      "post-punk",
+      "shoegaze"
+    ],
+    "summary_da": "Jeff Tweedy har givet en støjende og melankolsk coverversion af Twisted Teens' 'Wild Connection', der er en del af bandets tredje album i året, The Holy Cross Tigers.",
+    "source_name": "Stereogum",
+    "source_url": "https://stereogum.com/2511264/jeff-tweedy-covers-twisted-teens/music/",
+    "badge_color": "bg-indigo-900/60 text-indigo-300 border-indigo-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:50:19.237689+00:00"
+  },
+  {
+    "id": "rel-stereogum-7045960149817879034",
+    "artist": "Stereogum",
+    "title": "if i were a real man i would be able to break the neck of a suffering bird",
+    "type": "album",
+    "genres": [
+      "post-punk",
+      "shoegaze"
+    ],
+    "summary_da": "Lala Lala giver ud en overraskende piano-album, der viser hendes evne til at skabe melankolske og støjende lyde på klaveret.",
+    "source_name": "Stereogum",
+    "source_url": "https://stereogum.com/2511271/lala-lala-shares-surprise-piano-album-wall-tongue/music/",
+    "badge_color": "bg-indigo-900/60 text-indigo-300 border-indigo-700/50",
+    "date": "13. Sep 2026",
+    "created_at": "2026-09-13T05:50:12.983604+00:00"
+  }
+]
