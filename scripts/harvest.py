@@ -13,6 +13,7 @@ import xml.etree.ElementTree as ET
 sys.path.append(os.path.dirname(__file__))
 from config import FEED_SOURCES
 from ai_tagger import analyze_article_with_ollama, fallback_extract
+from venues import fetch_all_danish_venues
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 NEWS_FILE = os.path.join(DATA_DIR, "news.json")
@@ -186,6 +187,22 @@ def run_harvest(limit_per_feed: int = 5, skip_ai: bool = False, git_push: bool =
     existing_links = {item.get("link") for item in existing_news if item.get("link")}
     existing_titles = {item.get("title", "").lower() for item in existing_news if item.get("title")}
 
+    # 1. Fetch Danish Concerts Directly from Venues (Loppen, VEGA, Radar)
+    venue_concerts = fetch_all_danish_venues()
+    existing_concert_keys = {f"{c.get('artist')}-{c.get('date_str')}".lower() for c in existing_concerts}
+    existing_concert_links = {c.get('link') for c in existing_concerts if c.get('link')}
+
+    new_concerts_added = 0
+    merged_concerts = list(existing_concerts)
+    for c in venue_concerts:
+        key = f"{c.get('artist')}-{c.get('date_str')}".lower()
+        if key not in existing_concert_keys and c.get('link') not in existing_concert_links:
+            merged_concerts.insert(0, c)
+            existing_concert_keys.add(key)
+            existing_concert_links.add(c.get('link'))
+            new_concerts_added += 1
+
+    # 2. Fetch News Feeds
     fetched_items = []
     for source in FEED_SOURCES:
         print(f"📡 Henter feed fra: {source['name']}...", flush=True)
@@ -255,18 +272,18 @@ def run_harvest(limit_per_feed: int = 5, skip_ai: bool = False, git_push: bool =
                     "created_at": item["created_at"]
                 })
 
-        # Check if item qualifies for DK Concert Radar
+        # Check if news item detected a DK concert
         if item.get("denmark_concert"):
             dk_info = item["denmark_concert"]
-            concert_exists = any(c.get("link") == link for c in existing_concerts)
+            concert_exists = any(c.get("link") == link for c in merged_concerts)
             if not concert_exists:
                 artist_name = item.get("artist") or item["title"]
-                existing_concerts.insert(0, {
+                merged_concerts.insert(0, {
                     "id": f"cct-{item['id']}",
                     "artist": artist_name,
                     "venue": dk_info.get("venue", "Spillested i DK"),
                     "city": dk_info.get("city", "København"),
-                    "date_str": dk_info.get("date_str", "Annonceret"),
+                    "date_str": dk_info.get("date_str", "Se kilde"),
                     "summary_da": item["summary_da"],
                     "genres": item["genres"],
                     "source_name": item["source_name"],
@@ -274,21 +291,28 @@ def run_harvest(limit_per_feed: int = 5, skip_ai: bool = False, git_push: bool =
                     "created_at": item["created_at"]
                 })
 
-    # Clean and cap
+    # Clean and cap (keep up to 150 news, 60 releases, 120 concerts)
     updated_news_list = updated_news_list[:150]
     existing_releases = [r for r in existing_releases if r.get("title") and r.get("title").lower() not in ["none", "null"]][:60]
-    existing_concerts = existing_concerts[:50]
+    
+    # Remove any dummy or malformed concerts
+    cleaned_concerts = [
+        c for c in merged_concerts 
+        if c.get("artist") and c.get("artist").lower() not in ["none", "null"]
+        and c.get("date_str") and not c.get("date_str").endswith(".jpg")
+    ][:120]
 
     save_json(NEWS_FILE, updated_news_list)
     save_json(RELEASES_FILE, existing_releases)
-    save_json(CONCERTS_FILE, existing_concerts)
+    save_json(CONCERTS_FILE, cleaned_concerts)
 
     meta = {
         "last_harvest": datetime.now(timezone.utc).isoformat(),
         "total_news": len(updated_news_list),
         "total_releases": len(existing_releases),
-        "total_concerts": len(existing_concerts),
-        "new_added": new_articles_count
+        "total_concerts": len(cleaned_concerts),
+        "new_added": new_articles_count,
+        "new_concerts": new_concerts_added
     }
     save_json(META_FILE, meta)
 
@@ -297,16 +321,15 @@ def run_harvest(limit_per_feed: int = 5, skip_ai: bool = False, git_push: bool =
     print(f"   • Nye artikler tilføjet: {new_articles_count}", flush=True)
     print(f"   • Total nyheder i arkiv: {len(updated_news_list)}", flush=True)
     print(f"   • Total udgivelser på radaren: {len(existing_releases)}", flush=True)
-    print(f"   • Total DK koncerter: {len(existing_concerts)}", flush=True)
+    print(f"   • Total DK koncerter: {len(cleaned_concerts)} (heraf {len(venue_concerts)} direkte fra spillesteder)", flush=True)
     print("=" * 60, flush=True)
 
-    # Optional Git auto-commit and push
     if git_push:
         print("\n🚀 Git push aktiveret – committer nye data...", flush=True)
         try:
             repo_dir = os.path.dirname(os.path.dirname(__file__))
             subprocess.run(["git", "add", "data/"], cwd=repo_dir, check=True)
-            commit_msg = f"Auto-harvest: {new_articles_count} nye opdateringer ({datetime.now().strftime('%Y-%m-%d %H:%M')})"
+            commit_msg = f"Auto-harvest: {new_articles_count} nyheder, {len(cleaned_concerts)} koncerter ({datetime.now().strftime('%Y-%m-%d %H:%M')})"
             subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_dir, check=False)
             subprocess.run(["git", "push"], cwd=repo_dir, check=True)
             print("✓ Ændringer pushet til GitHub! Vercel redeployer automatisk.", flush=True)
